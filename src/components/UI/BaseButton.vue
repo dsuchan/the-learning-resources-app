@@ -1,13 +1,13 @@
 <template>
   <!-- With dynamic ':class', I can switch modes of styling for any button -> that will save me some time in future development -->
-  <button :type="type" :class="mode">
+  <button :class="mode">
     <slot></slot>
   </button>
 </template>
 
 <script>
 export default {
-  props: ['type', 'mode'],
+  props: ['mode'],
 };
 </script>
 
