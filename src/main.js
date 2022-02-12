@@ -1,3 +1,7 @@
 import { createApp } from 'vue';
 
-createApp({}).mount('#app');
+// Importing the App logic from 'App.vue' file
+import App from './App.vue';
+
+// Creating the actual App and then mounting it to '#app' in 'index.html'
+createApp(App).mount('#app');
