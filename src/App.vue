@@ -1,14 +1,18 @@
 <template>
+  <!-- Using the 'title' prop from 'TheHeader.vue' as the <h1> -->
+  <the-header title="ResourceBook"></the-header>
   <!-- Binding the 'resources' prop from 'StoredResources.vue' file -->
   <stored-resources :resources="storedResources"></stored-resources>
 </template>
 
 <script>
 import StoredResources from './components/learning-resources/StoredResources.vue';
+import TheHeader from './components/layouts/TheHeader.vue';
 
 export default {
   components: {
     'stored-resources': StoredResources,
+    'the-header': TheHeader,
   },
   data() {
     return {

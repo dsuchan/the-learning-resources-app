@@ -1,16 +1,17 @@
 <template>
   <!-- Binding all the props to elements I want to dynamically change based of current resource -->
   <li>
-    <div>
+    <base-card>
       <header>
         <h3>{{ title }}</h3>
-        <button>Delete</button>
+        <base-button mode="flat">Delete</base-button>
       </header>
-    </div>
-    <p>{{ description }}</p>
-    <nav>
-      <a :href="link">View resource</a>
-    </nav>
+
+      <p>{{ description }}</p>
+      <nav>
+        <a :href="link">View resource</a>
+      </nav>
+    </base-card>
   </li>
 </template>
 
