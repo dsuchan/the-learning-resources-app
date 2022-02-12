@@ -16,9 +16,10 @@
 import LearningResource from './LearningResource.vue';
 
 export default {
-  props: ['resources'],
+  // Injecting 'resources' provided from 'TheResources.vue'
+  inject: ['resources'],
   components: {
-    'learning-resource': LearningResource,
+    LearningResource,
   },
 };
 </script>

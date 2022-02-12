@@ -6,10 +6,9 @@
         <h3>{{ title }}</h3>
         <base-button mode="flat">Delete</base-button>
       </header>
-
       <p>{{ description }}</p>
       <nav>
-        <a :href="link">View resource</a>
+        <a :href="link">View Resource</a>
       </nav>
     </base-card>
   </li>
@@ -17,20 +16,7 @@
 
 <script>
 export default {
-  props: {
-    title: {
-      type: String,
-      required: true,
-    },
-    description: {
-      type: String,
-      required: true,
-    },
-    link: {
-      type: String,
-      required: true,
-    },
-  },
+  props: ['title', 'description', 'link'],
 };
 </script>
 
