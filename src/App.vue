@@ -1,25 +1,18 @@
 <template>
-  <ul>
-    <!-- Using 1 custom component for all the 'storedResources' -->
-    <learning-resource
-      v-for="resource in storedResources"
-      :key="resource.id"
-      :title="resource.title"
-      :description="resource.description"
-      :link="resource.link"
-    ></learning-resource>
-  </ul>
+  <!-- Binding the 'resources' prop from 'StoredResources.vue' file -->
+  <stored-resources :resources="storedResources"></stored-resources>
 </template>
 
 <script>
-import LearningResource from './components/learning-resources/LearningResource.vue';
+import StoredResources from './components/learning-resources/StoredResources.vue';
 
 export default {
   components: {
-    'learning-resource': LearningResource,
+    'stored-resources': StoredResources,
   },
   data() {
     return {
+      // All resources will be stored here
       storedResources: [
         {
           id: 'official-guide',
@@ -38,3 +31,20 @@ export default {
   },
 };
 </script>
+
+<!-- Setting global styles -->
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500&display=swap');
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-family: 'Roboto', sans-serif;
+}
+
+body {
+  margin: 0;
+}
+</style>
