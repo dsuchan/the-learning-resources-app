@@ -51,6 +51,8 @@ export default {
       resources: this.storedResources,
       // Will get injected to the 'AddResource.vue' component
       addResource: this.addResource,
+      // Will get injected to the 'LearningResource.vue' component
+      deleteResource: this.removeResource,
     };
   },
   computed: {
@@ -77,6 +79,14 @@ export default {
       this.storedResources.unshift(newResource);
       // Then switching the selected tab to 'stored-resources'
       this.selectedTab = 'stored-resources';
+    },
+    removeResource(resId) {
+      // 'resIndex' will get me the index of resource I want to delete
+      const resIndex = this.storedResources.findIndex(
+        (res) => res.id === resId
+      );
+      // Here I'm removing this element at this index
+      this.storedResources.splice(resIndex, 1);
     },
   },
 };
