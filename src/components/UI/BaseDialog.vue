@@ -1,23 +1,26 @@
 <template>
-  <!-- <div> will be used as darkened background behing the <dialog>  -->
-  <!-- Also emitting the custom event 'close' which I will listen to in 'AddResources.vue' -->
-  <div @click="$emit('close')"></div>
-  <dialog open>
-    <header>
-      <slot name="header">
-        <h2>{{ title }}</h2>
-      </slot>
-    </header>
-    <section>
-      <slot></slot>
-    </section>
-    <!-- <menu> will be used for buttons -->
-    <menu>
-      <slot name="actions">
-        <base-button @click="$emit('close')">Close</base-button>
-      </slot>
-    </menu>
-  </dialog>
+  <!-- Teleporting the overlay with <dialog> at the end of <body> so it's not deeply nested in the DOM -->
+  <teleport to="body">
+    <!-- <div> will be used as darkened background behing the <dialog>  -->
+    <!-- Also emitting the custom event 'close' which I will listen to in 'AddResources.vue' -->
+    <div @click="$emit('close')"></div>
+    <dialog open>
+      <header>
+        <slot name="header">
+          <h2>{{ title }}</h2>
+        </slot>
+      </header>
+      <section>
+        <slot></slot>
+      </section>
+      <!-- <menu> will be used for buttons -->
+      <menu>
+        <slot name="actions">
+          <base-button @click="$emit('close')">Close</base-button>
+        </slot>
+      </menu>
+    </dialog>
+  </teleport>
 </template>
 
 <script>
