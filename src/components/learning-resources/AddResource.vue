@@ -1,4 +1,24 @@
 <template>
+  <!-- If the entered values in inputs are invalid -> show this dialog -->
+  <!-- Also, I'm listening to the custom 'close' event emitted from 'BaseDialog.vue' (<div> darkened overlay). If I click on that, the 'confirmError' method will be triggered -->
+  <base-dialog
+    v-if="inputIsInvalid"
+    title="Invalid Input"
+    @close="confirmError"
+  >
+    <!-- Customizing the <section> slot in 'BaseDialog.vue' -->
+    <template #default>
+      <p>Unfortunately, at least one input value is invalid.</p>
+      <p>
+        Please, check all input and make sure you enter at least a few
+        characters into each input field.
+      </p>
+    </template>
+    <!-- Customizing the <menu> ('actions') slot in 'BaseDialog.vue' -->
+    <template #actions>
+      <base-button @click="confirmError">Okay</base-button>
+    </template>
+  </base-dialog>
   <base-card>
     <!-- Once the form is submitted, trigger the 'submitData' method -->
     <form @submit.prevent="submitData">
@@ -29,14 +49,31 @@
 <script>
 export default {
   inject: ['addResource'],
+  data() {
+    return {
+      inputIsInvalid: false,
+    };
+  },
   methods: {
     submitData() {
       const enteredTitle = this.$refs.titleInput.value;
       const enteredDescription = this.$refs.descInput.value;
       const enteredUrl = this.$refs.linkInput.value;
 
+      if (
+        enteredTitle.trim() === '' ||
+        enteredDescription.trim() === '' ||
+        enteredUrl.trim() === ''
+      ) {
+        this.inputIsInvalid = true;
+        return;
+      }
+
       // Now I can call the 'addResource' here and forward in the refs from inputs
       this.addResource(enteredTitle, enteredDescription, enteredUrl);
+    },
+    confirmError() {
+      this.inputIsInvalid = false;
     },
   },
 };
